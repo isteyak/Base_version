@@ -1,0 +1,341 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EEB86A10-01A5-4998-9BA8-884C62B4D399}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>WayGuideManager</RootNamespace>
+    <AssemblyName>WayGuideManager</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CommonServiceLocator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.2.0.4\lib\net47\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism, Version=7.1.0.431, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Core.7.1.0.431\lib\net45\Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Unity.Wpf, Version=7.1.0.431, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Unity.7.1.0.431\lib\net45\Prism.Unity.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Wpf, Version=7.1.0.431, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Wpf.7.1.0.431\lib\net45\Prism.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Controls.Ribbon" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Wpf.7.1.0.431\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Unity.Abstractions, Version=3.3.1.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Abstractions.3.3.1\lib\net47\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.8.11.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Container.5.8.11\lib\net47\Unity.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Components\BindablePasswordBox.xaml.cs">
+      <DependentUpon>BindablePasswordBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\ModelBase.cs" />
+    <Compile Include="Helpers\RegionNames.cs" />
+    <Compile Include="Helpers\ViewKeys.cs" />
+    <Compile Include="Helpers\ViewModelBase.cs" />
+    <Compile Include="Model\ShellModel.cs" />
+    <Compile Include="ProjectData\Project.cs" />
+    <Compile Include="UtilityHelpers\IModalWindowService.cs" />
+    <Compile Include="ViewModels\PasswordViewModel.cs" />
+    <Compile Include="ViewModels\ShellViewModel.cs" />
+    <Compile Include="Views\PasswordView.xaml.cs">
+      <DependentUpon>PasswordView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shell.xaml.cs">
+      <DependentUpon>Shell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SplashView.xaml.cs">
+      <DependentUpon>SplashView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WayGuideManagerMain.xaml.cs">
+      <DependentUpon>WayGuideManagerMain.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Components\BindablePasswordBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Views\PasswordView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Shell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SplashView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WayGuideManagerMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\about_us_new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\way_logo4.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\book.png" />
+    <Resource Include="Images\home.png" />
+    <Resource Include="Images\icons8-file-64.png" />
+    <Resource Include="Images\icons8-foot-100.png" />
+    <Resource Include="Images\icons8-hand-with-pen-64.png" />
+    <Resource Include="Images\icons8-map-64%281%29.png" />
+    <Resource Include="Images\icons8-map-64%282%29.png" />
+    <Resource Include="Images\icons8-map-64.png" />
+    <Resource Include="Images\icons8-map-editing-30.png" />
+    <Resource Include="Images\icons8-map-marker-96.png" />
+    <Resource Include="Images\icons8-refresh-48.png" />
+    <Resource Include="Images\icons8-transit-on-map-96.png" />
+    <Resource Include="Images\icons8-world-map-100.png" />
+    <Resource Include="Images\icons8-writer-female-48.png" />
+    <Resource Include="Images\magnifying-glass.png" />
+    <Resource Include="Images\placeholder.png" />
+    <Resource Include="Images\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\close_map.png" />
+    <Resource Include="Images\footIcon.png" />
+    <Resource Include="Images\map_comments.png" />
+    <Resource Include="Images\print_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\clear comments on map.png" />
+    <Resource Include="Images\convert map.png" />
+    <Resource Include="Images\create vector.png" />
+    <Resource Include="Images\default map.png" />
+    <Resource Include="Images\dxf_file.jpg" />
+    <Resource Include="Images\icons8-cruise-control-on-40.png" />
+    <Resource Include="Images\icons8-map-marker-64.png" />
+    <Resource Include="Images\icons8-map-pin-50.png" />
+    <Resource Include="Images\icons8-map-pokemon-48.png" />
+    <Resource Include="Images\icons8-project-64.png" />
+    <Resource Include="Images\icons8-rhomboid-shape-64.png" />
+    <Resource Include="Images\icons8-save-64.png" />
+    <Resource Include="Images\icons8-transit-on-map-48.png" />
+    <Resource Include="Images\icons8-world-map-64.png" />
+    <Resource Include="Images\load raster.png" />
+    <Resource Include="Images\load sample.png" />
+    <Resource Include="Images\load topo.png" />
+    <Resource Include="Images\load vector.png" />
+    <Resource Include="Images\load_session.png" />
+    <Resource Include="Images\map_comments %282%29.png" />
+    <Resource Include="Images\print preview.png" />
+    <Resource Include="Images\print.png" />
+    <Resource Include="Images\refresh.png" />
+    <Resource Include="Images\Save As.png" />
+    <Resource Include="Images\Save.png" />
+    <Resource Include="Images\shape file.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Absolute waypoint.png" />
+    <Resource Include="Images\change file name.png" />
+    <Resource Include="Images\clear waypoint.png" />
+    <Resource Include="Images\commnets on map.png" />
+    <Resource Include="Images\Create Route.png" />
+    <Resource Include="Images\Csv.png" />
+    <Resource Include="Images\delete waypoint.png" />
+    <Resource Include="Images\Edit waypoint.png" />
+    <Resource Include="Images\Export.png" />
+    <Resource Include="Images\icons8-kml-64.png" />
+    <Resource Include="Images\Kml.png" />
+    <Resource Include="Images\Manage waypoint.png" />
+    <Resource Include="Images\show all waypoint.png" />
+    <Resource Include="Images\show waypoint.png" />
+    <Resource Include="Images\tools.png" />
+    <Resource Include="Images\waypoint.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Clear Comments On Map %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Display Comments.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\1sec.png" />
+    <Resource Include="Images\change colour track.png" />
+    <Resource Include="Images\change filename1.png" />
+    <Resource Include="Images\clear all track on Map.png" />
+    <Resource Include="Images\clear track on map.png" />
+    <Resource Include="Images\clear waypoint1 comments.png" />
+    <Resource Include="Images\clear waypoint1 on map.png" />
+    <Resource Include="Images\clear waypoint1.png" />
+    <Resource Include="Images\clear.png" />
+    <Resource Include="Images\continuous1.PNG" />
+    <Resource Include="Images\create all route1.png" />
+    <Resource Include="Images\create allocation.png" />
+    <Resource Include="Images\create device1.png" />
+    <Resource Include="Images\create map1.png" />
+    <Resource Include="Images\create route1.png" />
+    <Resource Include="Images\CSV1.png" />
+    <Resource Include="Images\delete tracks.png" />
+    <Resource Include="Images\device details1.png" />
+    <Resource Include="Images\device1.png" />
+    <Resource Include="Images\display comments1.png" />
+    <Resource Include="Images\display waypoint1.png" />
+    <Resource Include="Images\DXF.PNG" />
+    <Resource Include="Images\edit allocation.png" />
+    <Resource Include="Images\edit track.png" />
+    <Resource Include="Images\Edit waypoint1.png" />
+    <Resource Include="Images\export tools1.png" />
+    <Resource Include="Images\export1.png" />
+    <Resource Include="Images\file generate.png" />
+    <Resource Include="Images\gefence create.png" />
+    <Resource Include="Images\generate file1.png" />
+    <Resource Include="Images\geo system1.png" />
+    <Resource Include="Images\geofence deta.png" />
+    <Resource Include="Images\geofence details1.png" />
+    <Resource Include="Images\geofence1.png" />
+    <Resource Include="Images\icons8-help-64.png" />
+    <Resource Include="Images\icons8-track-order-64%284%29.png" />
+    <Resource Include="Images\KML1.png" />
+    <Resource Include="Images\live device data.png" />
+    <Resource Include="Images\live track.png" />
+    <Resource Include="Images\manage waypoint1.png" />
+    <Resource Include="Images\map data1.png" />
+    <Resource Include="Images\map detail1.png" />
+    <Resource Include="Images\preferences1.png" />
+    <Resource Include="Images\rate1.png" />
+    <Resource Include="Images\realtime.png" />
+    <Resource Include="Images\serial port1.png" />
+    <Resource Include="Images\show all waypoint1.png" />
+    <Resource Include="Images\show info track.png" />
+    <Resource Include="Images\show waypoint1.png" />
+    <Resource Include="Images\start operation.png" />
+    <Resource Include="Images\tracks.png" />
+    <Resource Include="Images\user allocation.png" />
+    <Resource Include="Images\user data1.png" />
+    <Resource Include="Images\user details.png" />
+    <Resource Include="Images\user register1.png" />
+    <Resource Include="Images\user1.png" />
+    <Resource Include="Images\view allocation.png" />
+    <Resource Include="Images\view track tools.png" />
+    <Resource Include="Images\view track.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\delete waypoint1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\help NAV.png" />
+    <Resource Include="Images\help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\load1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\change colour route.png" />
+    <Resource Include="Images\clear route.png" />
+    <Resource Include="Images\delete route.png" />
+    <Resource Include="Images\device details.png" />
+    <Resource Include="Images\device manager.png" />
+    <Resource Include="Images\device receive.png" />
+    <Resource Include="Images\device transfer.png" />
+    <Resource Include="Images\device.png" />
+    <Resource Include="Images\route tool.png" />
+    <Resource Include="Images\route.png" />
+    <Resource Include="Images\show route.png" />
+    <Resource Include="Images\upgrade device.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\edit route.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\view route.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

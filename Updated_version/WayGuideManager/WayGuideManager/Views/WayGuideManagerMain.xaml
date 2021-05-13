@@ -1,0 +1,696 @@
+﻿<UserControl x:Class="WayGuideManager.Views.WayGuideManagerMain"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:components ="clr-namespace:WayGuideManager.Components"
+             xmlns:const="clr-namespace:WayGuideManager.Helpers"
+             mc:Ignorable="d" 
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="110"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="5*"/>
+            
+        </Grid.ColumnDefinitions>
+            <Ribbon
+            Grid.Row="0"
+            x:Name="RibbonMenu"
+            Grid.ColumnSpan="2"
+                Grid.RowSpan="1"
+            Margin="0,-20,0,0" >
+            <Ribbon.ApplicationMenu>
+                <RibbonApplicationMenu Visibility="Collapsed" />
+            </Ribbon.ApplicationMenu>
+            <RibbonTab Header="File" IsSelected="{Binding IsFileMenuSelected}" Margin="0,0,0,0">
+                <RibbonGroup HorizontalAlignment="Stretch"  VerticalAlignment="Stretch">
+                    <RibbonMenuButton
+                        Margin="5,0,5,0"
+                        LargeImageSource=" E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\icons8-file-64.png"
+                        IsEnabled="{Binding IsPiping}"
+                        Label="Session">
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\icons8-file-64.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="New session"
+                            IsEnabled="True" />
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\load1.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Load session"
+                            IsEnabled="True" />
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\Save.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Save"
+                            IsEnabled="True" />
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\Save As.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Save As"
+                            IsEnabled="True" />
+                    </RibbonMenuButton>
+                    <RibbonMenuButton
+                        Margin="5,0,5,0"
+                        LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\icons8-map-64.png"
+                        IsEnabled="{Binding IsPiping}"
+                        Label="Load Map">
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\load raster.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Load Raster Map"
+                            IsEnabled="True" />
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\load topo.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Load Topo Map"
+                            IsEnabled="True" />
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\create vector.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Create Vector Project"
+                            IsEnabled="True" />
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\load vector.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Load Vector Project"
+                            IsEnabled="True" />
+                    </RibbonMenuButton>
+                    <RibbonMenuButton
+                        Margin="5,0,5,0"
+                        LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\icons8-map-marker-96.png"
+                        IsEnabled="{Binding IsPiping}"
+                        Label="Convert">
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\convert map.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Convert Map"
+                            IsEnabled="True" />
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\dxf_file.jpg"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Convert DXF to Shape"
+                            IsEnabled="True" />
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\icons8-map-64(2).png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Convert DXF To Required CRS"
+                            IsEnabled="True" />
+                        
+                    </RibbonMenuButton>
+                    <RibbonMenuButton
+                        Margin="5,0,5,0"
+                        LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\print_icon.png"
+                        IsEnabled="{Binding IsPiping}"
+                        Label="Print">
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\print.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Print Map"
+                            IsEnabled="True" />
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\print_icon.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Print Preview"
+                            IsEnabled="True" />
+                       
+                    </RibbonMenuButton>
+                    <RibbonMenuButton
+                        Margin="5,0,5,0"
+                        LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\map_comments (2).png"
+                        IsEnabled="{Binding IsPiping}"
+                        Label="Comment">
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\map_comments (2).png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Comments On Map"
+                            IsEnabled="True" />
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\clear comments on map.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Clear Comments On Map"
+                            IsEnabled="True" />
+                        
+
+                    </RibbonMenuButton>
+                    <RibbonButton
+                            LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\default map.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Label="Load Default Map"
+                            IsEnabled="True" />
+                    <RibbonButton
+                            LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\load sample.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Label="Load Samples"
+                            IsEnabled="True" />
+                    <RibbonButton
+                       Margin="5,0,5,0"
+                        LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\refresh.png"
+                        Command="{Binding NewClickCommand}"
+                        Label="Refresh" />
+                    <RibbonButton
+                       Margin="5,0,5,0"
+                        LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\close_map.png"
+                        Command="{Binding NewClickCommand}"
+                        Label="Close" />
+                </RibbonGroup>
+            </RibbonTab>
+            <RibbonTab  Margin="0,0,0,0" Header="WayPoint" IsSelected="{Binding IsFileMenuSelected}">
+                <RibbonGroup HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <RibbonMenuButton
+                        Margin="5,0,5,0"
+                        LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\waypoint.png"
+                        IsEnabled="{Binding IsPiping}"
+                        Label="Create WayPoints">
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\Absolute waypoint.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Create Absolute WayPoint"
+                            IsEnabled="True" />
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\waypoint.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Create WayPoint On Map"
+                            IsEnabled="True" />
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\Edit waypoint1.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Edit WayPoint"
+                            IsEnabled="False" />
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\delete waypoint1.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Delete WayPoint"
+                            IsEnabled="True" />
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\show waypoint1.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Show WayPoint"
+                            IsEnabled="True" />
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\clear waypoint1 on map.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Clear All WayPoint On Map"
+                            IsEnabled="True" />
+                    </RibbonMenuButton>
+                    <RibbonButton
+                        Margin="5,0,5,0"
+                        LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\display comments1.png"
+                        IsEnabled="{Binding IsPiping}"
+                        Label="Display Comments">
+                    </RibbonButton>
+                    <RibbonMenuButton
+                        Margin="5,0,5,0"
+                        LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\create route1.png"
+                        IsEnabled="{Binding IsPiping}"
+                        Label="Create Route">
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\create route1.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Create Route Using Selected Waypoint"
+                            IsEnabled="False" />
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\create route1.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Create Route Using All Waypoint"
+                            IsEnabled="True" />
+                    </RibbonMenuButton>
+                    <RibbonMenuButton
+                        Margin="5,0,5,0"
+                        LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\export1.png"
+                        IsEnabled="{Binding IsPiping}"
+                        Label="Export">
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\export1.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Export File"
+                            IsEnabled="False" />
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\export tools1.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="View Import Export Tool"
+                            IsEnabled="True" />
+                    </RibbonMenuButton>
+                    <RibbonButton
+                        Margin="5,0,5,0"
+                        LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\show all waypoint1.png"
+                        IsEnabled="{Binding IsPiping}"
+                        Label="Show All WayPont On Map">
+                    </RibbonButton>
+                    <RibbonMenuButton
+                        Margin="5,0,5,0"
+                        LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\KML1.png"
+                        IsEnabled="{Binding IsPiping}"
+                        Label="Generate File">
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\KML1.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Generate KML"
+                            IsEnabled="False" />
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\CSV1.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Generate CSV"
+                            IsEnabled="False" />
+                    </RibbonMenuButton>
+                    <RibbonMenuButton
+                        LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\manage waypoint1.png"
+                        IsEnabled="{Binding IsPiping}"
+                        Label="Manage WayPoint">
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\manage waypoint1.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Manage WayPoint On Map"
+                            IsEnabled="False" />
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\change filename1.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Change File Name"
+                            IsEnabled="False" />
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\clear comments on map.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Clear WayPoint Comments"
+                            IsEnabled="False" />
+                    </RibbonMenuButton>
+                </RibbonGroup>
+                
+            </RibbonTab>
+            <RibbonTab  Margin="0,0,0,0" Header="Settings" IsSelected="{Binding IsFileMenuSelected}">
+                <RibbonGroup HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <RibbonButton
+                            Margin="5,0,5,0"
+                            LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\geo system1.png"
+                            IsEnabled="{Binding IsPiping}"
+                            Label="GeoSystem"/>
+                    <RibbonButton
+                            LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\preferences1.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Label="Preferences"
+                            IsEnabled="True" />
+                    <RibbonButton
+                            LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\serial port1.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Label="SerialPort"
+                            IsEnabled="True" />
+                    
+                </RibbonGroup>
+            </RibbonTab>
+            <RibbonTab  Margin="0,0,0,0" Header="DataBase" IsSelected="{Binding IsFileMenuSelected}">
+                <RibbonGroup HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <RibbonMenuButton
+                        LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\map data1.png"
+                        Margin="5,0,5,0"
+                        IsEnabled="{Binding IsPiping}"
+                        Label="Map">
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\map data1.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Map Data"
+                            IsEnabled="True" />
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\create map1.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Create Map"
+                            IsEnabled="True" />
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\map detail1.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Map Details"
+                            IsEnabled="False" />
+                    </RibbonMenuButton>
+                    <RibbonMenuButton
+                        Margin="5,0,5,0"
+                        LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\user1.png"
+                        IsEnabled="{Binding IsPiping}"
+                        Label="User">
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\user data1.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="User Data"
+                            IsEnabled="True" />
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\user register1.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Register User"
+                            IsEnabled="True" />
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\user details.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="User Details"
+                            IsEnabled="False" />
+                    </RibbonMenuButton>
+                    <RibbonMenuButton
+                        Margin="5,0,5,0"
+                        LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\device1.png"
+                        IsEnabled="{Binding IsPiping}"
+                        Label="Device">
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\device details1.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Device Data"
+                            IsEnabled="True" />
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\device details1.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Register Device"
+                            IsEnabled="True" />
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\device details1.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Device Details"
+                            IsEnabled="False" />
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\rate1.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Configure Rate"
+                            IsEnabled="False" />
+                    </RibbonMenuButton>
+                    <RibbonMenuButton
+                        Margin="5,0,5,0"
+                        LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\geo system1.png"
+                        IsEnabled="{Binding IsPiping}"
+                        Label="GeoFence">
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\geofence deta.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="GeoFence Data"
+                            IsEnabled="True" />
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\gefence create.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Create GeoFence"
+                            IsEnabled="True" />
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\geofence details1.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="GeoFence Details"
+                            IsEnabled="False" />
+                    </RibbonMenuButton>
+                </RibbonGroup>
+            </RibbonTab>
+            <RibbonTab  Margin="0,0,0,0" Header="Operation" IsSelected="{Binding IsFileMenuSelected}">
+                <RibbonGroup HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <RibbonMenuButton
+                        Margin="5,0,5,0"
+                        LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\user1.png"
+                        IsEnabled="{Binding IsPiping}"
+                        Label="User">
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\user allocation.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="User Allocation"
+                            IsEnabled="True" />
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\create allocation.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Create Allocation"
+                            IsEnabled="True" />
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\edit allocation.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Edit Allocation"
+                            IsEnabled="False" />
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\view allocation.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="View Allocation"
+                            IsEnabled="False" />
+                    </RibbonMenuButton>
+                    <RibbonButton
+                       Margin="5,0,5,0"
+                        LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\live device data.png"
+                        Command="{Binding NewClickCommand}"
+                        Label="Live Device Data" />
+
+                    <RibbonButton
+                       Margin="5,0,5,0"
+                        LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\start operation.png"
+                        Command="{Binding NewClickCommand}"
+                        Label="Start Operation" />
+                </RibbonGroup>
+            </RibbonTab>
+            <RibbonTab  Margin="0,0,0,0" Header="Tracks" IsSelected="{Binding IsFileMenuSelected}">
+                <RibbonGroup HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <RibbonMenuButton
+                        Margin="5,0,5,0"
+                        LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\tracks.png"
+                        IsEnabled="{Binding IsPiping}"
+                        Label="Live Tracks">
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\Save.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Save"
+                            IsEnabled="True" />
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\clear.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Clear"
+                            IsEnabled="True" />
+                    </RibbonMenuButton>
+                    <RibbonButton
+                       Margin="5,0,5,0"
+                        LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\continuous1.PNG"
+                        Command="{Binding NewClickCommand}"
+                        Label="Continuous" />
+
+                    <RibbonButton
+                       Margin="5,0,5,0"
+                        LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\1sec.png"
+                        Command="{Binding NewClickCommand}"
+                        Label="One Second" />
+                    <RibbonButton
+                       Margin="5,0,5,0"
+                        LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\edit track.png"
+                        Command="{Binding NewClickCommand}"
+                        Label="Rename Track" />
+                    <RibbonButton
+                       Margin="5,0,5,0"
+                        LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\realtime.png"
+                        Command="{Binding NewClickCommand}"
+                        Label="Real Time" />
+                    <RibbonMenuButton
+                        Margin="5,0,5,0"
+                        LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\tracks.png"
+                        IsEnabled="{Binding IsPiping}"
+                        Label="Tracks">
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\delete tracks.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Delete Track"
+                            IsEnabled="True" />
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\view track.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Show Tracks"
+                            IsEnabled="True" />
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\show info track.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Show Info"
+                            IsEnabled="True" />
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\show info track.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Show Distance"
+                            IsEnabled="True" />
+                    </RibbonMenuButton>
+                    <RibbonButton
+                       Margin="5,0,5,0"
+                        LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\change colour track.png"
+                        Command="{Binding NewClickCommand}"
+                        Label="Change Colour" />
+                    <RibbonButton
+                       Margin="5,0,5,0"
+                        LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\clear track on map.png"
+                        Command="{Binding NewClickCommand}"
+                        Label="Clear Track On Map" />
+                    <RibbonButton
+                       Margin="5,0,5,0"
+                        LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\view track.png"
+                        Command="{Binding NewClickCommand}"
+                        Label="View Track Tools" />
+                    <RibbonMenuButton
+                        Margin="5,0,5,0"
+                        LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\file generate.png"
+                        IsEnabled="{Binding IsPiping}"
+                        Label="Generate File">
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\KML1.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Generate KML"
+                            IsEnabled="True" />
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\CSV1.png"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Generate CSV"
+                            IsEnabled="True" />
+                        <RibbonMenuItem
+                            ImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\DXF.PNG"
+                            Command="{Binding ValidateAllCommand}"
+                            Header="Generate DXF"
+                            IsEnabled="True" />
+                        
+                    </RibbonMenuButton>
+                    <RibbonButton
+                       Margin="5,0,5,0"
+                        LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\clear track on map.png"
+                      
+                        Command="{Binding NewClickCommand}"
+                        Label="Clear All Tracks On Map" />
+                </RibbonGroup>
+            </RibbonTab>
+            <RibbonTab  Margin="0,0,0,0" Header="Route" IsSelected="{Binding IsFileMenuSelected}">
+                <RibbonGroup  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <RibbonButton
+                       Margin="5,0,5,0"
+                         LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\Create Route.png"
+                        Command="{Binding NewClickCommand}"
+                        Label="Create Route On Map" />
+                    <RibbonButton
+                       Margin="5,0,5,0"
+                       LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\edit route.png"
+                        Command="{Binding NewClickCommand}"
+                        Label="Edit Route" />
+                    <RibbonButton
+                       Margin="5,0,5,0"
+                       LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\delete route.png"
+                        Command="{Binding NewClickCommand}"
+                        Label="Delete Route" />
+                    <RibbonButton
+                       Margin="5,0,5,0"
+                       LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\view route.png"
+                        Command="{Binding NewClickCommand}"
+                        Label="Show Route" />
+                    <RibbonButton
+                       Margin="5,0,5,0"
+                       LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\change colour route.png"
+                        Command="{Binding NewClickCommand}"
+                        Label="Change Colour" />
+                    <RibbonButton
+                       Margin="5,0,5,0"
+                       LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\clear route.png"
+                        Command="{Binding NewClickCommand}"
+                        Label="Clear On Map" />
+                    <RibbonButton
+                       Margin="5,0,5,0"
+                       LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\show route.png"
+                        Command="{Binding NewClickCommand}"
+                        Label="View Route Tool" />
+                    <RibbonButton
+                       Margin="5,0,5,0"
+                       LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\clear route.png"
+                        Command="{Binding NewClickCommand}"
+                        Label="Clear All Route On Map" />
+                </RibbonGroup>
+            </RibbonTab>
+            <RibbonTab  Margin="0,0,0,0" Header="Device" IsSelected="{Binding IsFileMenuSelected}">
+                <RibbonGroup  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <RibbonButton
+                       Margin="5,0,5,0"
+                         LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\device transfer.png"
+                        Command="{Binding NewClickCommand}"
+                        Label="Transfer Data To Device" />
+                    <RibbonButton
+                       Margin="5,0,5,0"
+                       LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\device receive.png"
+                        Command="{Binding NewClickCommand}"
+                        Label="Receive Data from Device" />
+                    <RibbonButton
+                       Margin="5,0,5,0"
+                       LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\device manager.png"
+                        Command="{Binding NewClickCommand}"
+                        Label="Device Manager" />
+                    <RibbonButton
+                       Margin="5,0,5,0"
+                       LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\upgrade device.png"
+                        Command="{Binding NewClickCommand}"
+                        Label="Upgrade Device" />
+                    
+                    <RibbonButton
+                       Margin="5,0,5,0"
+                       LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\device details.png"
+                        Command="{Binding NewClickCommand}"
+                        Label="Device Details" />
+                </RibbonGroup>
+            </RibbonTab>
+            <RibbonTab  Margin="0,0,0,0" Header="Help" IsSelected="{Binding IsFileMenuSelected}">
+                <RibbonGroup  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <RibbonButton
+                       Margin="5,0,5,0"
+                         LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\help NAV.png"
+                        Command="{Binding NewClickCommand}"
+                        Label="About SMARTNAV Manager" />
+                    <RibbonButton
+                       Margin="5,0,5,0"
+                       LargeImageSource="E:\wayguide-WPF\Updated_version\WayGuideManager\WayGuideManager\Images\help.png"
+                        Command="{Binding NewClickCommand}"
+                        Label="Help F1" />
+                </RibbonGroup>
+            </RibbonTab>
+           
+
+
+
+        </Ribbon>
+
+        <Grid Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" Height="600" >
+            <Border Background="White" BorderBrush="Black" BorderThickness="0,1,0,0">
+                <TabControl Margin="10,0,0,0">
+                    <TabItem Padding="5,5,15,5" Header="Devices" Margin="0,0,0,0">
+
+                        <ListBox  Name="listBox2"  >
+                            <ListBoxItem Content="Device1"></ListBoxItem>
+                            <ListBoxItem Content="Device2"></ListBoxItem>
+                            <ListBoxItem Content="Device3"></ListBoxItem>
+                            <ListBoxItem Content="Device4"></ListBoxItem>
+                            <ListBoxItem Content="Device5"></ListBoxItem>
+                            <ListBoxItem Content="Device6"></ListBoxItem>
+
+
+                        </ListBox>
+
+                    </TabItem>
+                    <TabItem Header="  WayPoints  " Padding="5,5,15,5" Margin="0,0,0,0">
+
+                        
+                        <ListBox  Name="listBox1"  >
+                            <ListBoxItem Content="Mark1"></ListBoxItem>
+                            <ListBoxItem Content="Mark2"></ListBoxItem>
+                            <ListBoxItem Content="Mark3"></ListBoxItem>
+                            <ListBoxItem Content="Mark4"></ListBoxItem>
+                            <ListBoxItem Content="Mark5"></ListBoxItem>
+                            <ListBoxItem Content="Mark6"></ListBoxItem>
+
+
+                        </ListBox>
+                    </TabItem>
+                    <TabItem Padding="5,5,15,5" Header="  Tracks  " Margin="0,0,0,0">
+                         <ListBox>
+                                        <ListBoxItem Content="Track1"></ListBoxItem>
+                                        <ListBoxItem Content="Track2"></ListBoxItem>
+                                        <ListBoxItem Content="Track3"></ListBoxItem>
+                                        <ListBoxItem Content="Track4"></ListBoxItem>
+                                        <ListBoxItem Content="Track5"></ListBoxItem>
+                                        <ListBoxItem Content="Track6"></ListBoxItem>    
+                         </ListBox>
+                    </TabItem>
+                </TabControl>
+            </Border>
+
+        </Grid>
+        <ContentControl prism:RegionManager.RegionName="{x:Static const:RegionNames.ContentRegion}" />
+        <Grid Height="600" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" >
+            <Border Background="White" BorderBrush="Black" BorderThickness="1">
+                
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>
